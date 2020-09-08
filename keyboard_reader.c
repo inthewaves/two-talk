@@ -45,7 +45,7 @@ static bool createMessageFromBufferAndPutOnQueue(char* messageBuffer, size_t siz
             isEnqueueSuccessful = false;
             freeMessageFn(pMessage);
             pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
-        } else {
+	} else {
             // Here, the append was successful, so the queue is not empty.
             // If the sender is blocked on this cond var, then the reader will block
             // until reader thread is done.

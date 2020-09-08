@@ -103,9 +103,9 @@ bool ScreenPrinter_putMessageOnQueue(Message* pMessage)
             fputs("**The receiving message queue is too large!**\n", stdout);
             fputs("**The most recent message will be dropped, please tell the other to resend**\n",
                   stdout);
-            pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
-            freeMessageFn(pMessage);
             isEnqueueSuccessful = false;
+	        freeMessageFn(pMessage);
+            pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
         } else {
             pthread_cond_signal(&s_syncMessagesAvailableCondVar);
             isEnqueueSuccessful = true;
